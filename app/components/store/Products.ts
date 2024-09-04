@@ -6,9 +6,7 @@ export const dummyProducts: Product[] = [
         description: 'This shirt gives you instantly shredding power',
         price: 19.99,
         imageUrls: [
-            'https://i.ibb.co/h7nVNd2/image.png',
-            'https://i.ibb.co/h7nVNd2/image.png',
-            'https://i.ibb.co/h7nVNd2/image.png'
+            'https://fakeraredirectory.com/wp-content/uploads/2021/10/pepeplebz.gif',
         ],
         category: 'Merch',
         stock: 10,
@@ -16,12 +14,11 @@ export const dummyProducts: Product[] = [
     },
     {
         id: 2,
-        name: 'Asymetric SurfHive Board',
+        name: ' SurfHive Board',
         description: 'If you surf in a crooked way, this board will fix it',
         price: 29.99,
         imageUrls: [
-            'https://ipfs.skatehive.app/ipfs/QmUAnxW1WTrR3JZPAB3CJsgVG11sZXd8PfX14Ux8W3a353',
-            'https://ipfs.skatehive.app/ipfs/QmUAnxW1WTrR3JZPAB3CJsgVG11sZXd8PfX14Ux8W3a353',
+            'https://fakeraredirectory.com/wp-content/uploads/2022/05/ghostfake.gif',
         ],
         category: 'Art',
         stock: 5,
@@ -29,24 +26,21 @@ export const dummyProducts: Product[] = [
     },
     {
         id: 3,
-        name: 'Jantar com Jasper',
+        name: 'Jantar Jasper',
         description: 'Happy ending not included',
         price: 9.99,
-        imageUrls: ['https://www.shutterstock.com/shutterstock/photos/1831879630/display_1500/stock-photo-beautifully-organized-event-round-served-table-banquet-ready-for-guests-round-decorated-table-1831879630.jpg'],
+        imageUrls: ['https://fakeraredirectory.com/wp-content/uploads/2023/04/ciobo.jpeg'],
         category: 'Category 3',
         stock: 20,
         rating: 3.5,
     },
     {
         id: 4,
-        name: 'New Skatehive Collection',
+        name: 'Skatehive Col',
         description: 'A new collection of skateboards and accessories.',
         price: 49.99,
         imageUrls: [
-            'https://ipfs.skatehive.app/ipfs/QmawcKutmy4oSJ2As4yHRF8GatHcLTq9W6qF93skgBJDpg',
-            'https://ipfs.skatehive.app/ipfs/QmTqGMXMFoFq5FJUjHJQ4H16aRnu2afxx2d7KbmVnh5Kb4',
-            'https://ipfs.skatehive.app/ipfs/QmNbrkKyc2z3scJ8ZYAAP8dtmKmmexpoQtzRYYUZTqmtAQ',
-            'https://ipfs.skatehive.app/ipfs/QmQJLEZMw4T9npVnAmX7UmZdbkLShtuhCMZNVYkSagRabg'
+            'https://fakeraredirectory.com/wp-content/uploads/2022/07/notkamoto-1.jpg?w=731'
         ],
         category: 'Merch',
         stock: 15,

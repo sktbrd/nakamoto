@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Text, VStack, Button, Image, Card, CardBody, CardFooter, HStack } from '@chakra-ui/react';
+import { Box, Text, VStack, Button, Image, Card, CardBody, CardFooter, HStack, Container, Center } from '@chakra-ui/react';
 import { Product } from '@/app/types/Products';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -22,63 +22,45 @@ export default function ProductCard({ product }: ProductCardProps) {
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             {/* Front Side */}
-            <Card key="front" borderWidth="1px" borderRadius="base" overflow="hidden" p={1} bg="muted" h={'440px'}>
+            <Card key="front" borderWidth="1px" borderRadius="base" overflow="hidden" p={1} bg="muted" h={'360px'}>
                 <CardBody>
-                    <Swiper
-                        spaceBetween={8}
-                        slidesPerView={1}
-                        pagination={{ clickable: true }}
-                        navigation={true}
-                        modules={[Navigation, Pagination]}
-                    >
-                        {product.imageUrls.map((url, index) => (
-                            <SwiperSlide key={index}>
-                                <Box h="200px" w="300px">
-                                    <Image
-                                        objectFit={'cover'}
-                                        src={url}
-                                        alt={product.name}
-                                        style={{ borderRadius: 'md', marginBottom: '1rem', width: '100%' }}
-                                    />
-                                </Box>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                    <VStack spacing={2} align="start" mt={3}>
-                        <Text fontWeight="bold" fontSize="lg">{product.name}</Text>
-                        <HStack>
-                            <Text fontSize="sm" color="gray.500">
-                                <del>${product.price.toFixed(2)} USD</del>
+                    <VStack spacing={2} align="center" mt={1} >
+                        <Center >
+                            <Image
+                                objectFit={"contain"}
+                                src={product.imageUrls[0]}
+                                alt={product.name}
+                                style={{ borderRadius: 'base', marginBottom: '1rem', maxHeight: '200px' }}
+                            />
+                        </Center>
+                        <VStack spacing={0} align="start">
+                            <Text fontWeight="bold" fontSize="lg">{product.name}</Text>
+                            <Text fontSize="sm" color="gray.500" mb={"5px"}>
+                                ${product.price.toFixed(2)} USD
                             </Text>
-                            <Text fontSize="sm" color={'red'}>${discountedPrice.toFixed(2)} HBD</Text>
-                        </HStack>
-                        <Text noOfLines={3}>{product.description}</Text>
+                        </VStack>
+                        <Button colorScheme="primary" w="full" onClick={() => setIsFlipped(true)}>
+                            Buy Now
+                        </Button>
                     </VStack>
                 </CardBody>
-                <CardFooter>
-                    <Button colorScheme="primary" w="full" onClick={() => setIsFlipped(true)}>
-                        Buy Now
-                    </Button>
-                </CardFooter>
             </Card>
 
             {/* Back Side */}
-            <Card key="back" borderWidth="1px" borderRadius="lg" overflow="hidden" p={1} bg="muted" h={'440px'}>
+            <Card key="back" borderWidth="1px" borderRadius="base" overflow="hidden" p={1} bg="muted" h={'360px'}>
                 <CardBody display="flex" justifyContent="center" alignItems="center">
                     <VStack>
-
                         {/* <QRCode size={150} value={`hive://commerce/${product.id}`} /> */}
                         <Box m={2} fontSize="lg" fontWeight="bold" color={'text'}>
                             ${discountedPrice.toFixed(2)} HBD
                         </Box>
+                        <Button colorScheme="primary" w="full" onClick={() => setIsFlipped(false)}>
+                            Go Back
+                        </Button>
                     </VStack>
                 </CardBody>
-                <CardFooter>
-                    <Button colorScheme="primary" w="full" onClick={() => setIsFlipped(false)}>
-                        Go Back
-                    </Button>
-                </CardFooter>
+
             </Card>
-        </ReactCardFlip>
+        </ReactCardFlip >
     );
 }

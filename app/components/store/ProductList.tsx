@@ -12,9 +12,9 @@ export default function ProductList({ products, columns }: ProductListProps) {
     return (
         <Box as="section" py={8}>
             <Text fontSize="2xl" fontWeight="bold" mb={4}>
-                Products
+                Index 1
             </Text>
-            <SimpleGrid columns={{ base: 1, sm: columns }} spacing={4}>
+            <SimpleGrid columns={{ base: 1, sm: columns, md: 2, lg: 3, xl: 4 }} spacing={4}>
                 {products.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
