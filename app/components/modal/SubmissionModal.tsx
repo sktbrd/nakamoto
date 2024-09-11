@@ -27,6 +27,12 @@ interface SubmissionModalProps {
 const SubmissionModal: React.FC<SubmissionModalProps> = ({ isOpen, onClose }) => {
     const { colors } = useTheme();
 
+    // TODO: Add Captcha and Require StampChain official URL for submission
+
+    // Create a database for submissions and append submissions to the database
+
+
+
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
             <ModalOverlay />
