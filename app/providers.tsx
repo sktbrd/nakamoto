@@ -4,6 +4,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { hackerTheme } from './themes/hacker';
 import { windows95Theme } from './themes/windows95';
+import StarfieldBackground from './themes/starFieldBackground';
 
 const themeMap = {
     windows95: windows95Theme,

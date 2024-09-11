@@ -5,11 +5,11 @@ import { Providers } from './providers';
 import { Box, Flex } from "@chakra-ui/react";
 import Header from "./components/layout/Header";
 import FooterNavigation from "./components/layout/FooterNavigation";
-
+import StarfieldBackground from "./themes/starFieldBackground";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nakamoto",
+  title: "Nakamoto Dir",
   description: "Stamping on BTC",
 };
 
@@ -23,13 +23,13 @@ export default function RootLayout({
       <body>
         <Providers>
           <Box bg="background" color="text" minH="100vh">
-            <Header />
+            {/* <Header /> */}
             <Flex direction={{ base: 'column', md: 'row' }}>
               <Box flex="1">
                 {children}
               </Box>
             </Flex>
-            <FooterNavigation />
+            {/* <FooterNavigation /> */}
           </Box>
         </Providers>
       </body>

@@ -3,6 +3,9 @@ import { extendTheme } from '@chakra-ui/react';
 export const hackerTheme = extendTheme({
     initialColorMode: 'dark', // set 'light' or 'dark' as the default color mode
     useSystemColorMode: false,
+    colorScheme: {
+        primary: 'blue'
+    },
     colors: {
         background: '#0f0f0f', // Black background, typical of hacker aesthetics
         text: '#00FF00', // Bright green text, reminiscent of terminal output
@@ -16,9 +19,9 @@ export const hackerTheme = extendTheme({
         warning: '#FF851B', // Orange for warnings
     },
     fonts: {
-        heading: '"Courier New", monospace', // Monospace font for headings
-        body: '"Courier New", monospace', // Monospace font for body text
-        mono: '"Courier New", monospace', // Monospace for code-like elements
+        heading: 'Roboto, sans-serif', // Roboto font for headings
+        body: 'Roboto, sans-serif', // Roboto font for body text
+        mono: 'Roboto Mono, monospace', // Roboto Mono for code-like elements
     },
     fontSizes: {
         xs: '12px',
