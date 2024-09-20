@@ -10,3 +10,5 @@ const StampIndex = () => {
         </Box>
     );
 }
+
+export default StampIndex;
