@@ -15,36 +15,38 @@ interface ProductCardProps {
     product: Product;
 }
 
+interface ImageAspectRatio {
+    width: number;
+    height: number;
+}
+
 export default function ProductCard({ product }: ProductCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
     const discountedPrice = product.price * 0.75;
 
+    //TODO: Check if the Stamp is Squared , Horizontal or Vertical
+
+
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             {/* Front Side */}
-            <Card key="front" borderWidth="1px" borderRadius="base" overflow="hidden" p={1} bg="muted" h={'360px'}>
-                <CardBody>
-                    <VStack spacing={2} align="center" mt={1} >
-                        <Center >
-                            <Image
-                                objectFit={"contain"}
-                                src={product.imageUrls[0]}
-                                alt={product.name}
-                                style={{ borderRadius: 'base', marginBottom: '1rem', maxHeight: '200px' }}
-                            />
-                        </Center>
-                        <VStack spacing={0} align="start">
-                            <Text fontWeight="bold" fontSize="lg">{product.name}</Text>
-                            <Text fontSize="sm" color="gray.500" mb={"5px"}>
-                                ${product.price.toFixed(2)} USD
-                            </Text>
-                        </VStack>
-                        <Button colorScheme="primary" w="full" onClick={() => setIsFlipped(true)}>
-                            Buy Now
-                        </Button>
-                    </VStack>
-                </CardBody>
-            </Card>
+            <Center>
+
+                <Card
+                    key="front"
+                    borderWidth="1px"
+                    borderRadius="base"
+                    overflow="hidden"
+                    p={0}
+                    bg="muted"
+                    h={'360px'}
+                    w={'full'}
+                    maxW={'260px'}
+                    onClick={() => setIsFlipped(true)}
+                >
+                    <Image src={product.imageUrls[0]} alt={product.name} boxSize="full" borderRadius={"5px"} />
+                </Card>
+            </Center>
 
             {/* Back Side */}
             <Card key="back" borderWidth="1px" borderRadius="base" overflow="hidden" p={1} bg="muted" h={'360px'}>

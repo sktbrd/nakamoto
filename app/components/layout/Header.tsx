@@ -30,7 +30,7 @@ export default function Header() {
         <Box bg="background" px={{ base: 4, md: 6 }} py={4} borderBottom={"1px solid"} borderColor={"primary"}>
             <Flex justify="space-between" align="center">
                 <HStack>
-                    <Image src="/pepemoto.png" alt="Nakamoto" boxSize="50px" />
+                    <Image src="/burnHead.svg" alt="Nakamoto" boxSize="100px" />
                     <Text fontSize={{ base: 'xl', md: '2xl' }} mt={2} fontWeight="bold">
                         Nakamoto
                     </Text>

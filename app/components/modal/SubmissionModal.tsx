@@ -52,7 +52,7 @@ const SubmissionModal: React.FC<SubmissionModalProps> = ({ isOpen, onClose }) =>
                     borderTopRadius="none"
                 >
                     <Box color={'muted'} fontWeight="bold">
-                        Submit Your Content
+                        Submit Your Art
                     </Box>
                     <HStack spacing={1}>
                         <Button
