@@ -96,7 +96,7 @@ const SubmissionModal: React.FC<SubmissionModalProps> = ({ isOpen, onClose }) =>
                 </HStack>
                 <ModalBody p={4}>
                     <FormControl mb={4}>
-                        <FormLabel color={colors.text}>Title</FormLabel>
+                        <FormLabel color={colors.text}>Stamp ID</FormLabel>
                         <Input
                             placeholder="Enter title"
                             bg={colors.muted}

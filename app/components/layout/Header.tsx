@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Flex, Text, Input, Button, useColorMode, Image, HStack } from '@chakra-ui/react';
 import SubmissionModal from '../modal/SubmissionModal';
+import NextLink from 'next/link'
+import { Link } from '@chakra-ui/react'
 
 export default function Header() {
     const { colorMode } = useColorMode();
@@ -29,7 +31,7 @@ export default function Header() {
     return (
         <Box bg="background" px={{ base: 4, md: 6 }} py={4} borderBottom={"1px solid"} borderColor={"primary"}>
             <Flex justify="space-between" align="center">
-                <HStack>
+                <HStack as={NextLink} href='/' spacing={2} cursor="pointer">
                     <Image src="/burnHead.svg" alt="Nakamoto" boxSize="100px" />
                     <Text fontSize={{ base: 'xl', md: '2xl' }} mt={2} fontWeight="bold">
                         Nakamoto
@@ -37,15 +39,15 @@ export default function Header() {
                 </HStack>
                 {!isMobile && (
                     <>
-                        <Text fontSize="lg" fontWeight="bold" color="primary">
+                        <Link as={NextLink} href='/about' fontSize="lg" fontWeight="bold" color="primary">
                             About us
-                        </Text>
-                        <Text fontSize="lg" fontWeight="bold" color="primary">
-                            Artists
-                        </Text>
-                        <Text fontSize="lg" fontWeight="bold" color="primary">
-                            Contact
-                        </Text>
+                        </Link>
+                        <Link as={NextLink} href='/stampIndex' fontSize="lg" fontWeight="bold" color="primary">
+                            Stamps Index
+                        </Link>
+                        <Link as={NextLink} href='/rules' fontSize="lg" fontWeight="bold" color="primary">
+                            Rules
+                        </Link>
                     </>
                 )}
                 <Button onClick={() => setModalDisplayed(true)}>

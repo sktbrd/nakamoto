@@ -5,6 +5,7 @@ import { Providers } from './providers';
 import { Box, Flex } from "@chakra-ui/react";
 import Header from "./components/layout/Header";
 import FooterNavigation from "./components/layout/FooterNavigation";
+import Cursor from "./components/cursor/Cursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Cursor />
         <Providers>
           <Box bg="background" color="text" minH="100vh">
             <Header />
