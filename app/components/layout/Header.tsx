@@ -1,57 +1,59 @@
-'use client'
-import React, { useEffect, useState } from 'react';
-import { Box, Flex, Text, Input, Button, useColorMode, Image, HStack } from '@chakra-ui/react';
+'use client';
+import { Box, Button, Flex, HStack, Image, Link, Text, useColorMode } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { useEffect, useState } from 'react';
 import SubmissionModal from '../modal/SubmissionModal';
-import NextLink from 'next/link'
-import { Link } from '@chakra-ui/react'
 
 export default function Header() {
     const { colorMode } = useColorMode();
     const [modalDisplayed, setModalDisplayed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 768) {
-                setIsMobile(true);
-            } else {
-                setIsMobile(false);
-            }
+            setIsMobile(window.innerWidth < 768);
         };
 
-        handleResize(); // Check initial window size
-
-        window.addEventListener('resize', handleResize); // Add event listener for window resize
+        handleResize(); 
+        window.addEventListener('resize', handleResize); 
 
         return () => {
-            window.removeEventListener('resize', handleResize); // Clean up event listener on component unmount
+            window.removeEventListener('resize', handleResize); 
         };
     }, []);
 
     return (
-        <Box bg="background" px={{ base: 4, md: 6 }} py={4} borderBottom={"1px solid"} borderColor={"primary"}>
-            <Flex justify="space-between" align="center">
+        <Box bg="background" px={4} py={4} borderBottom="1px solid" borderColor="primary">
+            <Flex justify="space-between" align="center" wrap="wrap">
                 <HStack as={NextLink} href='/' spacing={2} cursor="pointer">
                     <Image src="/burnHead.svg" alt="Nakamoto" boxSize="100px" />
-                    <Text fontSize={{ base: 'xl', md: '2xl' }} mt={2} fontWeight="bold">
+                    <Text fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold">
                         Nakamoto
                     </Text>
                 </HStack>
-                {!isMobile && (
-                    <>
-                        <Link as={NextLink} href='/about' fontSize="lg" fontWeight="bold" color="primary">
-                            About us
-                        </Link>
-                        <Link as={NextLink} href='/stampIndex' fontSize="lg" fontWeight="bold" color="primary">
-                            Stamps Index
-                        </Link>
-                        <Link as={NextLink} href='/rules' fontSize="lg" fontWeight="bold" color="primary">
-                            Rules
-                        </Link>
-                    </>
-                )}
-                <Button onClick={() => setModalDisplayed(true)}>
-                    {'Submit'}
+
+                <HStack spacing={6} display={isMobile ? 'none' : 'flex'}>
+                    <Link as={NextLink} href='/about' fontSize="lg" fontWeight="bold" color="primary">
+                        About Us
+                    </Link>
+                    <Link as={NextLink} href='/stampIndex' fontSize="lg" fontWeight="bold" color="primary">
+                        Stamps Index
+                    </Link>
+                    <Link as={NextLink} href='/rules' fontSize="lg" fontWeight="bold" color="primary">
+                        Rules
+                    </Link>
+                </HStack>
+
+                <Button
+                    onClick={() => setModalDisplayed(true)}
+                    variant="solid"
+                    colorScheme="teal"
+                    size="lg"
+                    ml={{ base: 0, md: 4 }}
+                    _hover={{ bg: 'teal.600' }}
+                >
+                    Submit
                 </Button>
             </Flex>
             <SubmissionModal isOpen={modalDisplayed} onClose={() => setModalDisplayed(false)} />
