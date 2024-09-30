@@ -12,10 +12,7 @@ const Rules: React.FC = () => {
             <Box
                 p={5}
                 mb={10}
-                borderWidth={1}
-                borderColor="gray.300"
                 borderRadius="md"
-                bg="blackAlpha.800"
                 color="white"
                 maxW="600px"
                 mx="auto"
@@ -69,10 +66,6 @@ const Rules: React.FC = () => {
             <Box
                 p={5}
                 mb={12}
-                borderWidth={1}
-                borderColor="gray.300"
-                borderRadius="md"
-                bg="blackAlpha.800"
                 color="white"
                 maxW="600px"
                 mx="auto"

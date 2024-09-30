@@ -67,8 +67,6 @@ const About = () => {
 
             color="white"
             p={6}
-
-            boxShadow="lg"
             maxWidth="800px"
             mx="auto"
             mt={10}
