@@ -9,7 +9,7 @@ const About = () => {
             handle: '@HnftPepe',
             platform: 'X',
             description: 'Digital Artist,  Stamps/Fake Rares/Rare Cocos/XCP/Ords',
-            imageUrl: '/artist1.png', // Adicione as URLs das imagens correspondentes
+            imageUrl: '/artist1.png',
         },
         {
             name: 'Socks',
@@ -154,7 +154,7 @@ const About = () => {
                                 border="2px solid white"
                             >
                                 <Image
-                                    src={artist.imageUrl} // URL da imagem do artista
+                                    src={artist.imageUrl}
                                     alt={artist.name}
                                     width={150}
                                     height={150}
