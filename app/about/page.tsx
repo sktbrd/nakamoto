@@ -41,35 +41,35 @@ const About = () => {
             handle: '@mikeinspace',
             platform: 'X',
             description: 'Founder of STAMPS Protocol. Like to stamp jpegs on the blockchain.',
-            imageUrl: '/artist5.png',
+            imageUrl: '/5.jpg',
         },
         {
             name: 'Viva',
             handle: '@Viva_La_Vandal',
             platform: 'X',
             description: 'Digital Artist, projects founders, entrepreneur, blockchain Vandal.',
-            imageUrl: '/artist6.png',
+            imageUrl: '/6.jpg',
         },
         {
             name: 'Sasha',
             handle: '@ChudoSasshha',
             platform: 'X',
             description: 'ARTIST BUILDER CURATOR QUEEN OF MEMES',
-            imageUrl: '/artist7.png',
+            imageUrl: '/7.jpg',
         },
         {
             name: 'Bobby',
             handle: '@BobbyZoo_BA',
             platform: 'X',
             description: 'OG Digital Artist, STAMPS Collectors, Emergency contact for enemies',
-            imageUrl: '/artist8.png',
+            imageUrl: '/8.jpg',
         },
         {
             name: 'Bobby',
             handle: '@BobbyZoo_BA',
             platform: 'X',
             description: 'OG Digital Artist, STAMPS Collectors, Emergency contact for enemies',
-            imageUrl: '/artist8.png',
+            imageUrl: '/9.jpg',
         },
     ]
 
@@ -152,7 +152,7 @@ const About = () => {
             <Box
                 color="white"
                 p={6}
-                maxWidth="800px"
+                maxWidth="1000px"
                 mx="auto"
                 mt={10}
             >
@@ -188,7 +188,7 @@ const About = () => {
 
                 <Text fontSize="2xl" p={12} >Advisors</Text>
 
-                <SimpleGrid columns={[1, 2, 3, 4 , 5]} spacing={8}>
+                <SimpleGrid columns={[1, 2, 3, 4 ,5 ]} spacing={8}>
                     {Advisors.map((Advisors, index) => (
                         <Box key={index} textAlign="center">
                             <Box
