@@ -3,35 +3,39 @@ import { Box, Link, SimpleGrid, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 
 const About = () => {
-    const artists = [
+    const TeamMembers = [
         {
             name: 'HNFTPepe',
             handle: '@HnftPepe',
             platform: 'X',
             description: 'Digital Artist,  Stamps/Fake Rares/Rare Cocos/XCP/Ords',
-            imageUrl: '/artist1.png',
+            imageUrl: '/1.png',
         },
         {
             name: 'Socks',
             handle: '@BTC_Socks',
             platform: 'X',
             description: 'Founder of the Bitcoin Socks Project. Goal to sell the most expensive digital Sock in history.',
-            imageUrl: '/artist2.png',
+            imageUrl: '/4.png',
         },
         {
             name: 'Mortylen',
             handle: '@lentymor',
             platform: 'X',
             description: 'Digital artist. Master Orchestrator of Replication Technology',
-            imageUrl: '/artist3.png',
+            imageUrl: '/3.png',
         },
         {
             name: 'AZ',
             handle: '@az0013100',
             platform: 'Telegram',
             description: 'STAMPS OG, artist, doesn’t use X.',
-            imageUrl: '/artist4.png',
+            imageUrl: '/2.jpg',
         },
+
+    ];
+
+    const Advisors = [
         {
             name: 'Mike',
             handle: '@mikeinspace',
@@ -60,14 +64,21 @@ const About = () => {
             description: 'OG Digital Artist, STAMPS Collectors, Emergency contact for enemies',
             imageUrl: '/artist8.png',
         },
-    ];
+        {
+            name: 'Bobby',
+            handle: '@BobbyZoo_BA',
+            platform: 'X',
+            description: 'OG Digital Artist, STAMPS Collectors, Emergency contact for enemies',
+            imageUrl: '/artist8.png',
+        },
+    ]
 
     return (
         <Box
 
             color="white"
             p={6}
-            maxWidth="800px"
+            maxWidth="850px"
             mx="auto"
             mt={10}
             display="flex"
@@ -100,9 +111,18 @@ const About = () => {
             <Text mb={4}>
                 Official Name: Nakamoto STAMP Index Directory
             </Text>
-            <Text mb={4}>
-                Official Webpage: {`www.nakamotostamps.online`}
-            </Text>
+            <Box >
+
+                <Link mb={4}
+                    href="www.nakamotostamps.online"
+                    isExternal
+                    color="teal.400"
+
+                    fontWeight="bold">
+                    Official Webpage:
+
+                </Link>
+            </Box>
             <Text mb={4}>
                 Email: {`info@nakamotostamps.online`}
             </Text>
@@ -117,7 +137,7 @@ const About = () => {
                 The STAMPS Directory is divided into 10 Epochs. Each Epoch consists of 10 Indices (consisted of 42 STAMPS per Index) plus 1 Burn Index (consisted of 1 Burn Card). In total, each Epoch consists of 420 STAMPS plus 10 Burn Cards with a total of 4,300 STAMPS for the entire NSI directory.
             </Text>
 
-            <Box mt={6} borderRadius="md" overflow="hidden" boxShadow="md" maxWidth="300px" alignContent="">
+            <Box mt={6} overflow="hidden" maxWidth="300px" >
                 <Image
                     src="/nsi.png"
                     alt="STAMPS per Epoch"
@@ -130,44 +150,76 @@ const About = () => {
 
             <Text fontSize="2xl" p={4} >Team Members</Text>
             <Box
-                bg="gray.800"
                 color="white"
                 p={6}
-                borderRadius="md"
-                boxShadow="lg"
                 maxWidth="800px"
                 mx="auto"
                 mt={10}
             >
 
-                <SimpleGrid columns={[1, 2, 4]} spacing={8}>
-                    {artists.map((artist, index) => (
+                <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>
+                    {TeamMembers.map((TeamMembers, index) => (
                         <Box key={index} textAlign="center">
                             <Box
                                 borderRadius="full"
                                 overflow="hidden"
-                                boxSize="150px"
+                                boxSize="125px"
                                 mx="auto"
                                 mb={4}
                                 border="2px solid white"
                             >
                                 <Image
-                                    src={artist.imageUrl}
-                                    alt={artist.name}
-                                    width={150}
-                                    height={150}
+                                    src={TeamMembers.imageUrl}
+                                    alt={TeamMembers.name}
+                                    width={125}
+                                    height={125}
                                     objectFit="cover"
                                     layout="intrinsic"
                                 />
                             </Box>
                             <Text fontSize="lg" fontWeight="bold">
-                                {artist.name}
+                                {TeamMembers.name}
                             </Text>
-                            <Text>{artist.handle} on {artist.platform}</Text>
-                            <Text>{artist.description}</Text>
+                            <Text>{TeamMembers.handle} on {TeamMembers.platform}</Text>
+                            <Text>{TeamMembers.description}</Text>
                         </Box>
                     ))}
                 </SimpleGrid>
+
+                <Text fontSize="2xl" p={12} >Advisors</Text>
+
+                <SimpleGrid columns={[1, 2, 3, 4 , 5]} spacing={8}>
+                    {Advisors.map((Advisors, index) => (
+                        <Box key={index} textAlign="center">
+                            <Box
+                                borderRadius="full"
+                                overflow="hidden"
+                                boxSize="125px"
+                                mx="auto"
+                                mb={4}
+                                border="2px solid white"
+                            >
+                                <Image
+                                    src={Advisors.imageUrl}
+                                    alt={Advisors.name}
+                                    width={125}
+                                    height={125}
+                                    objectFit="cover"
+                                    layout="intrinsic"
+                                />
+                            </Box>
+                            <Text fontSize="lg" fontWeight="bold">
+                                {Advisors.name}
+                            </Text>
+                            <Text>{Advisors.handle} on {Advisors.platform}</Text>
+                            <Text>{Advisors.description}</Text>
+                        </Box>
+                    ))}
+                </SimpleGrid>
+
+                <Text fontSize="2xl" p={8} >Scientists</Text>
+                <Text>Too many to list.</Text>
+
                 <Box p={8} mt={12}>
                     <Link
                         href="https://medium.com/@nakamotostampindex/nakamoto-stamp-index-directory-1489cf3ea39a"
