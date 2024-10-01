@@ -15,10 +15,10 @@ export type StampDetails = Record<string, StampDetail[]>;
 
 export const epochData: EpochData = {
     'EPOCH 1_Nakamoto': ['Index #1', 'Index #2', 'Index #3', 'Index #4', 'Index #5', 'Index #6', 'Index #7', 'Index #8', 'Index #9', 'Index #10'],
-    'EPOCH 2_Suggon': ['Index #1', 'Index #2', 'Index #3', 'Index #4', 'Index #5', 'Index #6', 'Index #7', 'Index #8', 'Index #9', 'Index #10'],
-    'EPOCH 3_Michael': ['Index #1', 'Index #2', 'Index #3', 'Index #4', 'Index #5', 'Index #6', 'Index #7', 'Index #8', 'Index #9', 'Index #10'],
-    'EPOCH 4_Paul': ['Index #1', 'Index #2', 'Index #3', 'Index #4', 'Index #5', 'Index #6', 'Index #7', 'Index #8', 'Index #9', 'Index #10'],
-    'EPOCH 5_KEVIN': ['Index #1', 'Index #2', 'Index #3', 'Index #4', 'Index #5', 'Index #6', 'Index #7', 'Index #8', 'Index #9', 'Index #10'],
+    'EPOCH 2_Suggon': ["EPOCH 2_Suggon"],
+    'EPOCH 3_Michael': [],
+    'EPOCH 4_Paul': [],
+    'EPOCH 5_KEVIN': [],
 };
 
 export const stampDetails: StampDetails = {
@@ -137,6 +137,19 @@ export const stampDetails: StampDetails = {
         { imageUrl: "/photo.png", instance: 'Instance 9-J', issuance: 180, stars: 5, rarity: 1 },
     ],
     'Index #10': [
+        { imageUrl: "/photo.png", instance: 'Instance 10-A', issuance: 110, stars: 4, rarity: 2 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-B', issuance: 120, stars: 3, rarity: 3 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-C', issuance: 130, stars: 5, rarity: 1 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-D', issuance: 140, stars: 4, rarity: 2 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-E', issuance: 150, stars: 5, rarity: 2 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-F', issuance: 160, stars: 3, rarity: 3 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-G', issuance: 170, stars: 4, rarity: 4 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-H', issuance: 180, stars: 2, rarity: 5 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-I', issuance: 190, stars: 1, rarity: 6 },
+        { imageUrl: "/photo.png", instance: 'Instance 10-J', issuance: 200, stars: 3, rarity: 3 },
+    ],
+
+   'EPOCH 2_Suggon': [ 
         { imageUrl: "/photo.png", instance: 'Instance 10-A', issuance: 110, stars: 4, rarity: 2 },
         { imageUrl: "/photo.png", instance: 'Instance 10-B', issuance: 120, stars: 3, rarity: 3 },
         { imageUrl: "/photo.png", instance: 'Instance 10-C', issuance: 130, stars: 5, rarity: 1 },

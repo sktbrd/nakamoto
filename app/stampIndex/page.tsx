@@ -1,48 +1,49 @@
 "use client"
-import { Box, Flex, List, ListIcon, ListItem, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Drawer,
+    DrawerBody,
+    DrawerContent,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    Flex,
+    List,
+    ListIcon,
+    ListItem,
+    SimpleGrid,
+    Text,
+    useDisclosure,
+    VStack,
+} from "@chakra-ui/react";
 import Image from 'next/image';
 import { useState } from "react";
-import { MdCheckCircle } from "react-icons/md";
-import { epochData, StampDetail, stampDetails } from "../utils/StampEpoch";
+import { MdCheckCircle, MdMenu } from "react-icons/md";
+import { epochData, EpochKeys, StampDetail, stampDetails } from "../utils/StampEpoch";
+import { StampIndexData } from "../utils/StampIndexData";
 
 const StampIndex = () => {
     const [selectedIndex, setSelectedIndex] = useState<string>('');
-
-    const StampIndexData = [
-        {
-            name: 'Nakamoto Botticelli',
-            title: 'The Origin',
-            description: 'The ultimate legend in the crypto realm The OG of blockhain, the pioneer who kicked off the revolution.',
-            imageUrl: '/artist5.png',
-        },
-        {
-            name: 'Suggonardo Dez Nutci',
-            title: 'Suck on Deeznuts',
-            description: 'World-renowned Professor Suggonardo Dez Nutci, famous for his mouthwatering chocolate-covered, brown, roasted nuts.',
-            imageUrl: '/artist6.png',
-        },
-        {
-            name: 'Michael An Spasso',
-            title: 'Space Talk',
-            description: 'Spending most of his days holed up in his mom`s basement with the occasional voyage to outer space. Mike might seem like a gentle soul, but don`t be fooled - he`s actually a genius in the world of pioneering OnChain artwork!',
-            imageUrl: '/artist7.png',
-        },
-        {
-            name: 'Pepe Paul Paperhand',
-            title: 'Insider',
-            description: 'Known for his outlandish 20s and 1930 crypto bull forecasts. Paul is both the torchbearer and the trigger finger for some of the most iconic leaks of our generation.',
-            imageUrl: '/artist8.png',
-        },
-        {
-            name: 'Kevin Kanksy',
-            title: 'Community',
-            description: 'Most well known and respected figure in the STAMP community. Kevin is a voice of clarity, but don’t be too quick to trust him – you may find out the truth!',
-            imageUrl: '/artist9.png',
-        },
-    ];
+    const [selectedEpoch, setSelectedEpoch] = useState<string>('');
+    const { isOpen, onOpen, onClose } = useDisclosure(); 
 
     const handleIndexClick = (index: string) => {
-        setSelectedIndex(index); // Atualiza o índice selecionado
+        setSelectedIndex(index);
+        onClose(); 
+    };
+
+    const handleEpochClick = (epoch: string) => {
+        const epochKey = epoch as EpochKeys;
+
+        if (epochData.hasOwnProperty(epochKey)) {
+            setSelectedEpoch(epochKey);
+            setSelectedIndex(epochData[epochKey][0] || '');
+        } else {
+            console.error(`Epoch "${epoch}" não encontrado.`);
+            setSelectedEpoch('');
+            setSelectedIndex('');
+        }
     };
 
     return (
@@ -55,20 +56,21 @@ const StampIndex = () => {
             maxW="1200px"
             mx="auto"
         >
-            <Text fontSize="2xl" fontWeight="bold" mb={4} textAlign="center">
+            <Text fontSize={["xl", "2xl"]} fontWeight="bold" mb={4} textAlign="center">
                 Nakamoto STAMP Index Timeline
             </Text>
 
-            <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={2}>
+
+
+            <SimpleGrid columns={[2, 3, 4, 5]} spacing={2}>
                 {StampIndexData.map((artist, index) => (
                     <VStack
                         key={index}
                         textAlign="center"
                         spacing={4}
-                        minHeight="300px" // Define uma altura mínima para alinhar
-                        justify="space-between" // Garante que o conteúdo seja espaçado
+                        minHeight="300px"
+                        justify="space-between"
                     >
-                        {/* Imagem circular */}
                         <Box
                             borderRadius="full"
                             overflow="hidden"
@@ -85,94 +87,156 @@ const StampIndex = () => {
                             />
                         </Box>
 
-                        {/* Título */}
-                        <Text fontWeight="bold" fontSize="lg">
+                        <Text fontWeight="bold" fontSize={["md", "lg"]}>
                             {artist.title}
                         </Text>
 
-                        {/* Descrição */}
-                        <Text fontSize="sm" >
+                        <Text fontSize={["xs", "sm"]}>
                             {artist.description}
                         </Text>
 
-                        {/* Nome do artista */}
-                        <Text fontSize="md" color="cyan.400" fontWeight="bold">
+                        <Text fontSize={["sm", "md"]} color="cyan.400" fontWeight="bold">
                             {artist.name}
                         </Text>
                     </VStack>
                 ))}
             </SimpleGrid>
-
-            <Flex mt={12}>
-            {/* Box da esquerda */}
-            <Box width="20%" borderRight="1px solid green" pr={5}>
-                {Object.entries(epochData).map(([epoch, stamps], epochIndex) => (
-                    <Box key={epochIndex} mb={4}>
-                        <Text fontWeight="bold" color="green.400" mb={2}>
-                            {epoch}
-                        </Text>
-                        <List spacing={2}>
-                            {stamps.map((index: string) => (
-                                <ListItem
-                                    key={index}
-                                    cursor="pointer"
-                                    onClick={() => handleIndexClick(index)} 
-                                >
-                                    <ListIcon as={MdCheckCircle} color="green.500" />
-                                    {index}
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Box>
-                ))}
-            </Box>
-
-            {/* Box centralizado */}
-            <Box width="80%" pl={10} textAlign="center">
-                <Text fontSize="2xl" fontWeight="bold" mb={4}>
-                    NAKAMOTO EPOCH
-                </Text>
-                
-                <Text fontSize="2xl" fontWeight="bold" mb={4}>
-                    {selectedIndex}
-                </Text>
-
-                <SimpleGrid columns={[1, 2, 3]} spacing={8}>
-                    {stampDetails[selectedIndex]?.map((stamp: StampDetail, stampIndex: number) => (
-                        <VStack
-                            key={stampIndex}
-                            textAlign="center"
-                            spacing={4}
-                            bg="gray.800"
-                            p={4}
-                            borderRadius="md"
-                            shadow="md"
-                        >
-                            {/* Imagem grande */}
-                            <Box borderRadius="md" overflow="hidden" boxSize="250px">
-                                <Image
-                                    src={stamp.imageUrl}
-                                    alt={stamp.instance}
-                                    width={250}
-                                    height={350}
-                                    objectFit="cover"
-                                />
-                            </Box>
-
-                            {/* Informações abaixo da imagem */}
-                            <Text fontWeight="bold" fontSize="lg">
-                                {stamp.instance}
+            <Button
+                display={["flex", "none"]}
+                leftIcon={<MdMenu />}
+                colorScheme="teal"
+                onClick={onOpen}
+                mb={4}
+            >
+                Menu
+            </Button>
+            <Flex mt={12} flexDirection={["column", "row"]}>
+                <Box width={["100%", "20%"]} display={["none", "block"]} borderRight="1px solid green" pr={5}>
+                    {Object.entries(epochData).map(([epoch, stamps], epochIndex) => (
+                        <Box key={epochIndex} mb={4}>
+                            <Text
+                                fontWeight="bold"
+                                color="green.400"
+                                mb={2}
+                                cursor="pointer"
+                                onClick={() => handleEpochClick(epoch)}
+                            >
+                                {epoch}
                             </Text>
-                            <Text>Issuance: {stamp.issuance}</Text>
-                            <Text>Stars: {stamp.stars}</Text>
-                            <Text>Rarity Score: {stamp.rarity}</Text>
-                        </VStack>
+                            <List spacing={2}>
+                                {stamps.map((index: string) => (
+                                    <ListItem
+                                        key={index}
+                                        cursor="pointer"
+                                        onClick={() => handleIndexClick(index)}
+                                    >
+                                        <ListIcon as={MdCheckCircle} color="green.500" />
+                                        {index}
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Box>
                     ))}
-                </SimpleGrid>
-            </Box>
-        </Flex>
-          
-            
+                </Box>
+
+                <Box width={["100%", "80%"]} pl={[0, 10]} textAlign="center">
+                    <Text fontSize={["xl", "2xl"]} fontWeight="bold" mb={4}>
+                        {selectedEpoch}
+                    </Text>
+
+                    <Text fontSize={["xl", "2xl"]} fontWeight="bold" mb={4}>
+                        {selectedIndex || 'Select an Index'}
+                    </Text>
+
+                    <SimpleGrid columns={[1, 2, 3]} spacing={8}>
+                        {stampDetails[selectedIndex]?.map((stamp: StampDetail, stampIndex: number) => (
+                            <VStack
+                                key={stampIndex}
+                                textAlign="center"
+                                spacing={4}
+                                bg="gray.800"
+                                p={4}
+                                borderRadius="md"
+                                shadow="md"
+                            >
+                                <Box borderRadius="md" overflow="hidden" boxSize="250px">
+                                    <Image
+                                        src={stamp.imageUrl}
+                                        alt={stamp.instance}
+                                        width={250}
+                                        height={350}
+                                        objectFit="cover"
+                                    />
+                                </Box>
+
+                                <Text fontWeight="bold" fontSize={["md", "lg"]}>
+                                    {stamp.instance}
+                                </Text>
+                                <Text>Issuance: {stamp.issuance}</Text>
+                                <Text>Stars: {stamp.stars}</Text>
+                                <Text>Rarity Score: {stamp.rarity}</Text>
+                            </VStack>
+                        ))}
+                    </SimpleGrid>
+                </Box>
+            </Flex>
+
+            <Drawer isOpen={isOpen} placement="left" onClose={onClose} size="md">
+                <DrawerOverlay>
+                    <DrawerContent bg="gray.900" color="white">
+                        <DrawerHeader borderBottomWidth="1px" borderColor="green.400" textAlign="center">
+                            <Text fontSize="xl" fontWeight="bold" color="green.400">
+                                Menu
+                            </Text>
+                        </DrawerHeader>
+                        <DrawerBody>
+                            <Text fontWeight="bold" color="green.400" mb={4} textAlign="center">
+                                Select Epoch
+                            </Text>
+                            {Object.entries(epochData).map(([epoch, stamps], epochIndex) => (
+                                <Box key={epochIndex} mb={4} p={2} borderRadius="md" _hover={{ bg: "gray.700" }} transition="background 0.2s">
+                                    <Text
+                                        cursor="pointer"
+                                        fontSize="lg"
+                                        fontWeight="semibold"
+                                        onClick={() => handleEpochClick(epoch)}
+                                    >
+                                        {epoch}
+                                    </Text>
+                                    <List spacing={1} mt={1}>
+                                        {stamps.map((index: string) => (
+                                            <ListItem
+                                                key={index}
+                                                cursor="pointer"
+                                                onClick={() => handleIndexClick(index)}
+                                                p={1}
+                                                borderRadius="md"
+                                                _hover={{ bg: "gray.600" }}
+                                                transition="background 0.2s"
+                                            >
+                                                <ListIcon as={MdCheckCircle} color="green.500" />
+                                                {index}
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                </Box>
+                            ))}
+                        </DrawerBody>
+                        <DrawerFooter>
+                            <Button
+                                variant="outline"
+                                onClick={onClose}
+                                colorScheme="green"
+                                width="100%"
+                                _hover={{ bg: "green.500", color: "white" }}
+                            >
+                                Close
+                            </Button>
+                        </DrawerFooter>
+                    </DrawerContent>
+                </DrawerOverlay>
+            </Drawer>
+
         </Box>
     );
 };
