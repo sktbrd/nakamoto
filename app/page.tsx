@@ -102,8 +102,12 @@ export default function Home() {
                 />
               </Box>
             )}
-            <Text>{product.name}</Text>
-            <Text>{product.description}</Text>
+        
+            <Text mt={2} fontSize="lg" fontWeight="bold">{product.name}</Text>
+              <Text fontSize="sm">{product.description}</Text>
+              <Text fontSize="sm" color="gray.400">STAMP #{product.id}</Text>
+              <Text fontSize="sm" color="gray.400">Artist: {product.name}</Text>
+              <Text>{product.price}</Text>
           </Box>
         </GridItem>
         
