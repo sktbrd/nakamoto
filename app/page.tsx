@@ -8,14 +8,50 @@ const spin = keyframes`
   to { transform: rotate(360deg); }
 `;
 
+const flipCardStyles = {
+  perspective: "1000px",
+};
+
+const flipCardInnerStyles = {
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  textAlign: "center",
+  transition: "transform 0.6s",
+  transformStyle: "preserve-3d",
+  willChange: "transform",
+};
+
+const flipCardFlippedStyles = {
+  transform: "rotateY(180deg)",
+};
+
+const flipCardSideStyles = {
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  backfaceVisibility: "hidden",
+  willChange: "transform",
+};
+
+const flipCardBackStyles = {
+  transform: "rotateY(180deg)",
+};
+
 export default function Home() {
   const [products, setProducts] = useState<any[]>([]);
+  const [isFlipped, setIsFlipped] = useState<boolean[]>(Array(dummyProducts.length).fill(false)); // Estado para controle de giro de cada produto
+
+  const handleClick = (index: number) => {
+    const updatedFlips = [...isFlipped];
+    updatedFlips[index] = !updatedFlips[index];
+    setIsFlipped(updatedFlips);
+  };
 
   return (
     <Box bg="#0a0e0b" color="white">
       <Container maxW="container.lg" py={12}>
         <Flex align="center" justify="center" flexDirection={{ base: 'column', md: 'row' }} textAlign={{ base: 'center', md: 'left' }}>
-
           <Text fontSize="2xl" fontWeight="bold" mb={{ base: 4, md: 0 }} flex={1}>
             Home to only the most immutable and unprunable artworks on the Bitcoin blockchain
             <br />
@@ -31,27 +67,47 @@ export default function Home() {
         </Flex>
 
         <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} py={12}>
-          <GridItem>
-            <Image src="/path-to-your-first-image.jpg" alt="First Image" />
-          </GridItem>
-          <GridItem>
-            <Image src="/path-to-your-second-image.jpg" alt="Second Image" />
-          </GridItem>
+          <Image src="/nsi1.png" alt="First Image" />
         </Grid>
 
         <Text fontSize="2xl" fontWeight="bold" textAlign="center" mb={8}>
           STAMP Artworks
         </Text>
 
-        <Grid templateColumns={{ base: '1fr 1fr', md: 'repeat(3, 1fr)' }} gap={6} mb={8}>
-          {dummyProducts.map((product) => (
-            <GridItem key={product.id} textAlign="center">
-              <Image src={product.imageUrls[0]} alt={product.name} border="2px solid #fff" />
-              <Text mt={2} fontSize="lg" fontWeight="bold">{product.name}</Text>
-              <Text fontSize="sm">{product.description}</Text>
-              <Text fontSize="sm" color="gray.400">STAMP #{product.id}</Text>
-              <Text fontSize="sm" color="gray.400">Artist: {product.name}</Text>
-            </GridItem>
+        <Grid templateColumns={{ base: '1fr 1fr', md: 'repeat(4, 1fr)' }} gap={6} mb={8}>
+          {dummyProducts.map((product, index) => (
+          <GridItem key={product.id} textAlign="center" onClick={() => handleClick(index)} sx={flipCardStyles}>
+          <Box sx={{ ...flipCardInnerStyles, ...(isFlipped[index] && flipCardFlippedStyles) }}>
+            {!isFlipped[index] ? (
+              <Image 
+                src={product.imageUrls[0]} 
+                alt={product.name} 
+                border="2px solid #fff" 
+                sx={{
+                  width: '100%',    
+                  height: 'auto',   
+                  objectFit: 'cover' 
+                }} 
+              />
+            ) : (
+              <Box sx={{ ...flipCardSideStyles, ...flipCardBackStyles }}>
+                <Image 
+                  src="/nsi1.png" 
+                  alt="First Image" 
+                  sx={{
+                    width: '100%',   
+                    height: 'auto',   
+                    objectFit: 'cover' 
+                  }} 
+                />
+              </Box>
+            )}
+            <Text>{product.name}</Text>
+            <Text>{product.description}</Text>
+          </Box>
+        </GridItem>
+        
+         
           ))}
         </Grid>
 
@@ -81,7 +137,9 @@ export default function Home() {
               <br />
               The Pepe in Bali Exhibition at the Superlative Gallery in Bali showcases Pepe art from August 11th to August 24th, 2024. It educates on Pepes cultural significance, digital art history, and engages with the Pepe and internet culture community. The event features diverse Pepe interpretations in Bali, focusing on digital art and technology, with involvement from curators, collaborators, and the Pepe community. Held in Bali, known for digital art, the exhibition highlights the intersection of art, technology, and meme culture.
             </Text>
-            <Image src="/path-to-pepe-bali-exhibition-image.jpg" alt="Pepe in Bali Exhibition" />
+            <Image src="/nft.jpeg" alt="Pepe in Bali Exhibition" mb={4} />
+            <Image src="/nft2.jpeg" alt="Pepe in Bali Exhibition" mb={4} />
+            <Image src="/nft3.jpeg" alt="Pepe in Bali Exhibition" />
           </GridItem>
 
           <GridItem>
@@ -91,7 +149,6 @@ export default function Home() {
               <br />
               PepeFest at Beeple Studios was a community-led celebration of all things Pepe. A one-day event celebrating the community and culture around Matt Furies infamous 2005 creation.
             </Text>
-
           </GridItem>
         </Grid>
       </Container>
