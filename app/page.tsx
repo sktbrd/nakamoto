@@ -1,5 +1,5 @@
 'use client'
-import { Box, Button, Container, Flex, Grid, GridItem, Image, keyframes, Link, Text } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Grid, GridItem, Image, keyframes, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { dummyProducts } from './components/store/Products';
 
@@ -174,17 +174,7 @@ export default function Home() {
     <Image src="/Stamp Logo.png" alt="Stamp Icon" boxSize="50px" />
   </Flex>
 
-  <Flex justify="center" mt={4} gap={4}>
-    <Link href="https://link1.com" isExternal>
-      <Image src="/twitter.png" alt="Image 1" boxSize="50px" />
-    </Link>
-    <Link href="https://link2.com" isExternal>
-      <Image src="/telegram.png" alt="Image 2" boxSize="50px" />
-    </Link>
-    <Link href="https://link3.com" isExternal>
-      <Image src="/image3.png" alt="Image 3" boxSize="50px" />
-    </Link>
-  </Flex>
+ 
 </Container>
 
     </Box>

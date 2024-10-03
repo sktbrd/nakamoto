@@ -1,11 +1,12 @@
+import { Box, Flex } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Cursor from "./components/cursor/Cursor";
+import IconBar from "./components/IconBar";
+import FooterNavigation from "./components/layout/FooterNavigation";
+import Header from "./components/layout/Header";
 import "./globals.css";
 import { Providers } from './providers';
-import { Box, Flex } from "@chakra-ui/react";
-import Header from "./components/layout/Header";
-import FooterNavigation from "./components/layout/FooterNavigation";
-import Cursor from "./components/cursor/Cursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
             </Flex>
             <FooterNavigation />
           </Box>
+          <IconBar />
         </Providers>
       </body>
     </html>
