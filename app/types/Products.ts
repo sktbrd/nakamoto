@@ -3,9 +3,10 @@ export interface Product {
     name: string;
     description: string;
     price: number;
-    imageUrls: string[];
+    imageUrls: Record<string, any>;
     category: string;
     stock: number;
     rating: number;
+    width?: number;   
+    height?: number;
 }
-

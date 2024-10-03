@@ -1,95 +1,87 @@
 import { Product } from "@/app/types/Products";
+import stamp7 from "../../../public/STAMP01.png";
+import stamp1 from "../../../public/Stamp04.png";
+import stamp6 from "../../../public/Stamp05.png";
+import stamp2 from "../../../public/Stamp06.png";
+import stamp3 from "../../../public/Stamp07.png";
+import stamp4 from "../../../public/Stamp08.png";
+import stamp5 from "../../../public/Stamp09.png";
 export const dummyProducts: Product[] = [
     {
         id: 1,
-        name: 'Skatehive T-Shirt',
-        description: 'This shirt gives you instantly shredding power',
+        name: 'LuAmbriz',
+        description: '',
         price: 19.99,
-        imageUrls: [
-            'https://fakeraredirectory.com/wp-content/uploads/2021/10/pepeplebz.gif',
-        ],
+        imageUrls: [stamp1.src],
         category: 'Merch',
         stock: 10,
         rating: 4.5,
+        width: 800,   
+        height: 600
     },
     {
         id: 2,
-        name: ' SurfHive Board',
-        description: 'If you surf in a crooked way, this board will fix it',
+        name: 'Sasha Chudo',
+        description: '',
         price: 29.99,
-        imageUrls: [
-            'https://fakeraredirectory.com/wp-content/uploads/2022/05/ghostfake.gif',
-        ],
+        imageUrls: [stamp2.src],
+
         category: 'Art',
         stock: 5,
         rating: 4.0,
     },
     {
         id: 3,
-        name: 'Jantar Jasper',
-        description: 'Happy ending not included',
+        name: 'Nexus',
+        description: '',
         price: 9.99,
-        imageUrls: ['https://fakeraredirectory.com/wp-content/uploads/2023/04/ciobo.jpeg'],
+        imageUrls: [stamp3.src],
         category: 'Category 3',
         stock: 20,
         rating: 3.5,
     },
     {
         id: 4,
-        name: 'Skatehive Col',
-        description: 'A new collection of skateboards and accessories.',
+        name: 'Socks',
+        description: '',
         price: 49.99,
-        imageUrls: [
-            'https://fakeraredirectory.com/wp-content/uploads/2022/07/notkamoto-1.jpg?w=731'
-        ],
+        imageUrls: [stamp4.src],
+
         category: 'Merch',
         stock: 15,
         rating: 4.7,
     },
     {
-        id: 1,
-        name: 'Skatehive T-Shirt',
-        description: 'This shirt gives you instantly shredding power',
+        id: 5,
+        name: 'Viva La Vandal',
+        description: '',
         price: 19.99,
-        imageUrls: [
-            'https://fakeraredirectory.com/wp-content/uploads/2021/10/pepeplebz.gif',
-        ],
+        imageUrls: [stamp5.src],
+
         category: 'Merch',
         stock: 10,
         rating: 4.5,
     },
     {
-        id: 2,
-        name: ' SurfHive Board',
-        description: 'If you surf in a crooked way, this board will fix it',
+        id: 6,
+        name: 'HNFTPepe',
+        description: '',
         price: 29.99,
-        imageUrls: [
-            'https://fakeraredirectory.com/wp-content/uploads/2022/05/ghostfake.gif',
-        ],
+        imageUrls: [stamp6.src],
+
         category: 'Art',
         stock: 5,
         rating: 4.0,
     },
     {
-        id: 3,
-        name: 'Jantar Jasper',
-        description: 'Happy ending not included',
+        id: 7,
+        name: 'Mortylen',
+        description: '',
         price: 9.99,
-        imageUrls: ['https://fakeraredirectory.com/wp-content/uploads/2023/04/ciobo.jpeg'],
+        imageUrls: [stamp7.src],
         category: 'Category 3',
         stock: 20,
         rating: 3.5,
     },
-    {
-        id: 4,
-        name: 'Skatehive Col',
-        description: 'A new collection of skateboards and accessories.',
-        price: 49.99,
-        imageUrls: [
-            'https://fakeraredirectory.com/wp-content/uploads/2022/07/notkamoto-1.jpg?w=731'
-        ],
-        category: 'Merch',
-        stock: 15,
-        rating: 4.7,
-    },
+   
 ];

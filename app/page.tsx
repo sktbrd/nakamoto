@@ -1,5 +1,5 @@
 'use client'
-import { Box, Button, Container, Flex, Grid, GridItem, Image, keyframes, Text } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Grid, GridItem, Image, keyframes, Link, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { dummyProducts } from './components/store/Products';
 
@@ -40,7 +40,7 @@ const flipCardBackStyles = {
 
 export default function Home() {
   const [products, setProducts] = useState<any[]>([]);
-  const [isFlipped, setIsFlipped] = useState<boolean[]>(Array(dummyProducts.length).fill(false)); // Estado para controle de giro de cada produto
+  const [isFlipped, setIsFlipped] = useState<boolean[]>(Array(dummyProducts.length).fill(false)); 
 
   const handleClick = (index: number) => {
     const updatedFlips = [...isFlipped];
@@ -74,46 +74,58 @@ export default function Home() {
           STAMP Artworks
         </Text>
 
-        <Grid templateColumns={{ base: '1fr 1fr', md: 'repeat(4, 1fr)' }} gap={6} mb={8}>
-          {dummyProducts.map((product, index) => (
-          <GridItem key={product.id} textAlign="center" onClick={() => handleClick(index)} sx={flipCardStyles}>
-          <Box sx={{ ...flipCardInnerStyles, ...(isFlipped[index] && flipCardFlippedStyles) }}>
-            {!isFlipped[index] ? (
-              <Image 
-                src={product.imageUrls[0]} 
-                alt={product.name} 
-                border="2px solid #fff" 
-                sx={{
-                  width: '100%',    
-                  height: 'auto',   
-                  objectFit: 'cover' 
-                }} 
-              />
-            ) : (
-              <Box sx={{ ...flipCardSideStyles, ...flipCardBackStyles }}>
-                <Image 
-                  src="/nsi1.png" 
-                  alt="First Image" 
-                  sx={{
-                    width: '100%',   
-                    height: 'auto',   
-                    objectFit: 'cover' 
-                  }} 
-                />
-              </Box>
-            )}
-        
-            <Text mt={2} fontSize="lg" fontWeight="bold">{product.name}</Text>
-              <Text fontSize="sm">{product.description}</Text>
-              <Text fontSize="sm" color="gray.400">STAMP #{product.id}</Text>
-              <Text fontSize="sm" color="gray.400">Artist: {product.name}</Text>
-              <Text>{product.price}</Text>
-          </Box>
-        </GridItem>
-        
-         
-          ))}
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }} gap={6} mb={8}>
+          {dummyProducts.map((product, index) => {
+            const imageUrl = product.imageUrls[0];
+
+            const width = product.width ?? 0;
+            const height = product.height ?? 0;
+
+            const isLandscape = width > height;
+
+            return (
+              <GridItem
+                key={product.id}
+                textAlign="center"
+                onClick={() => handleClick(index)}
+                colSpan={isLandscape ? 2 : 1}
+              >
+                <Box sx={{ ...flipCardInnerStyles, ...(isFlipped[index] && flipCardFlippedStyles) }}>
+                  {!isFlipped[index] ? (
+                    <Image
+                      src={imageUrl}
+                      alt={product.name}
+                      border="2px solid #fff"
+                      sx={{
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  ) : (
+                    <Box sx={{ ...flipCardSideStyles, ...flipCardBackStyles }}>
+                      <Image
+                        src="/nsi1.png"
+                        alt="Primeira Imagem"
+                        sx={{
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </Box>
+                  )}
+
+                  <Text fontSize="sm" color="gray.400">STAMP #{product.id}</Text>
+                  <Text fontSize="sm" color="gray.400">Artista: {product.name}</Text>
+                </Box>
+              </GridItem>
+            );
+          })}
         </Grid>
+
+
+
 
         <Flex justify="center">
           <Button
@@ -147,7 +159,7 @@ export default function Home() {
           </GridItem>
 
           <GridItem>
-            <Image src="/path-to-beeple-pepefest-image.jpg" alt="Beeple PepeFest" />
+            <Image src="/Pepe in Bali.png" alt="Beeple PepeFest" />
             <Text fontSize="lg" mb={4}>
               <strong>STAMPS invading Beeple PepeFest August 2024</strong>
               <br />
@@ -158,10 +170,23 @@ export default function Home() {
       </Container>
 
       <Container maxW="container.lg" py={8}>
-        <Flex justify="center" align="center">
-          <Image src="/stamp-icon.svg" alt="Stamp Icon" boxSize="50px" />
-        </Flex>
-      </Container>
+  <Flex justify="center" align="center">
+    <Image src="/Stamp Logo.png" alt="Stamp Icon" boxSize="50px" />
+  </Flex>
+
+  <Flex justify="center" mt={4} gap={4}>
+    <Link href="https://link1.com" isExternal>
+      <Image src="/twitter.png" alt="Image 1" boxSize="50px" />
+    </Link>
+    <Link href="https://link2.com" isExternal>
+      <Image src="/telegram.png" alt="Image 2" boxSize="50px" />
+    </Link>
+    <Link href="https://link3.com" isExternal>
+      <Image src="/image3.png" alt="Image 3" boxSize="50px" />
+    </Link>
+  </Flex>
+</Container>
+
     </Box>
   );
 }
