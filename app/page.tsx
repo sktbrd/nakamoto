@@ -1,15 +1,14 @@
 'use client'
 import { Box, Button, Container, Flex, Grid, GridItem, Image, keyframes, Text } from '@chakra-ui/react';
 import { useState } from 'react';
+import FlipCard from './components/FlipCard';
 import { dummyProducts } from './components/store/Products';
 
-// Animação de rotação
 const spin = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 `;
 
-// Estilos para o cartão flip
 const flipCardInnerStyles = {
   position: "relative",
   width: "100%",
@@ -36,6 +35,7 @@ const flipCardBackStyles = {
 
 export default function Home() {
   const [isFlipped, setIsFlipped] = useState<boolean[]>(Array(dummyProducts.length).fill(false)); 
+  
 
   const handleClick = (index: number) => {
     const updatedFlips = [...isFlipped];
@@ -45,7 +45,6 @@ export default function Home() {
 
   return (
     <Box bg="#0a0e0b" color="white" minH="100vh">
-      {/* Cabeçalho com texto e imagem */}
       <Container maxW="container.xl" py={12}>
         <Flex 
           align="center" 
@@ -68,8 +67,8 @@ export default function Home() {
           />
         </Flex>
 
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} py={12}>
-          <Image src="/nsi1.png" alt="First Image" objectFit="cover"  borderRadius="md" />
+        <Grid  textAlign="center" gap={6} py={12}>
+        <FlipCard />
         </Grid>
 
         <Text fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold" textAlign="center" mb={8}>
@@ -118,7 +117,7 @@ export default function Home() {
                   )}
 
                   <Text fontSize="sm" color="gray.400">STAMP #{product.id}</Text>
-                  <Text fontSize="sm" color="gray.400">Artista: {product.name}</Text>
+                  <Text fontSize="sm" color="gray.400">artist: {product.name}</Text>
                 </Box>
               </GridItem>
             );
@@ -174,6 +173,7 @@ export default function Home() {
           <Image src="/Stamp Logo.png" alt="Stamp Icon" boxSize="50px" />
         </Flex>
       </Container>
+
     </Box>
   );
 }
