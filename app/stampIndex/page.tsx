@@ -159,22 +159,21 @@ const StampIndex = () => {
                                 borderRadius="md"
                                 shadow="md"
                             >
-                                <Box borderRadius="md" overflow="hidden" boxSize="250px">
                                     <Image
                                         src={stamp.imageUrl}
-                                        alt={stamp.instance}
+                                        alt={stamp.STAMP_Asset}
                                         width={250}
                                         height={350}
                                         objectFit="cover"
                                     />
-                                </Box>
+                               
 
                                 <Text fontWeight="bold" fontSize={["md", "lg"]}>
-                                    {stamp.instance}
+                                    {stamp.STAMP_Asset}
                                 </Text>
-                                <Text>Issuance: {stamp.issuance}</Text>
-                                <Text>Stars: {stamp.stars}</Text>
-                                <Text>Rarity Score: {stamp.rarity}</Text>
+                                <Text>Top: {stamp.Top}</Text>
+                                <Text>Rarity Score: {stamp.Rarity_Score}</Text>
+                                <Text>Rarity Title: {stamp.Rarity_TItle}</Text>
                             </VStack>
                         ))}
                     </SimpleGrid>
