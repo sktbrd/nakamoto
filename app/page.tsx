@@ -1,13 +1,15 @@
 'use client'
-import { Box, Button, Container, Flex, Grid, GridItem, Image, keyframes, Text } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Grid, GridItem, Image, keyframes, Text, useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
 import FlipCard from './components/FlipCard';
+import SubmitFormModal from './components/modal/SubmissionModal';
 import { dummyProducts } from './components/store/Products';
-
 const spin = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 `;
+
+
 
 const flipCardInnerStyles = {
   position: "relative",
@@ -34,8 +36,9 @@ const flipCardBackStyles = {
 };
 
 export default function Home() {
-  const [isFlipped, setIsFlipped] = useState<boolean[]>(Array(dummyProducts.length).fill(false)); 
-  
+  const [isFlipped, setIsFlipped] = useState<boolean[]>(Array(dummyProducts.length).fill(false));
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   const handleClick = (index: number) => {
     const updatedFlips = [...isFlipped];
@@ -46,11 +49,11 @@ export default function Home() {
   return (
     <Box bg="#0a0e0b" color="white" minH="100vh">
       <Container maxW="container.xl" py={12}>
-        <Flex 
-          align="center" 
-          justify="center" 
-          flexDirection={{ base: 'column', md: 'row' }} 
-          textAlign={{ base: 'center', md: 'left' }} 
+        <Flex
+          align="center"
+          justify="center"
+          flexDirection={{ base: 'column', md: 'row' }}
+          textAlign={{ base: 'center', md: 'left' }}
           mb={8}
         >
           <Text fontSize={{ base: 'lg', md: '2xl' }} fontWeight="bold" mb={{ base: 4, md: 0 }} flex={1}>
@@ -67,8 +70,8 @@ export default function Home() {
           />
         </Flex>
 
-        <Grid  textAlign="center" gap={6} py={12}>
-        <FlipCard />
+        <Grid textAlign="center" gap={6} py={12}>
+          <FlipCard />
         </Grid>
 
         <Text fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold" textAlign="center" mb={8}>
@@ -126,8 +129,7 @@ export default function Home() {
 
         <Flex justify="center">
           <Button
-            as="a"
-            href="/submit-art"
+            onClick={onOpen}
             variant="outline"
             colorScheme="teal"
             size="lg"
@@ -137,6 +139,8 @@ export default function Home() {
             Submit Art
           </Button>
         </Flex>
+
+        <SubmitFormModal isOpen={isOpen} onClose={onClose} />
       </Container>
 
       <Container maxW="container.xl" py={12}>
@@ -149,12 +153,57 @@ export default function Home() {
             <Text fontSize="lg" mb={4}>
               <strong>STAMPS Artworks showcasing in Pepe in Bali August 2024</strong>
               <br />
-              The Pepe in Bali Exhibition at the Superlative Gallery in Bali showcases Pepe art from August 11th to August 24th, 2024. 
+              The Pepe in Bali Exhibition at the Superlative Gallery in Bali showcases Pepe art from August 11th to August 24th, 2024.
               The event features diverse Pepe interpretations in Bali, focusing on digital art and technology, with involvement from curators, collaborators, and the Pepe community.
             </Text>
-            <Image src="/nft.jpeg" alt="Pepe in Bali Exhibition" mb={4} borderRadius="md" />
-            <Image src="/nft2.jpeg" alt="Pepe in Bali Exhibition" mb={4} borderRadius="md" />
-            <Image src="/nft3.jpeg" alt="Pepe in Bali Exhibition" borderRadius="md" />
+            <Grid
+              templateAreas={{
+                base: `
+      "image1"
+      "image2"
+      "image3"
+    `,
+                md: `
+      "image1 image1"
+      "image2 image3"
+    `,
+              }}
+              gridTemplateRows="auto"
+              gridTemplateColumns={{
+                base: "1fr",
+                md: "repeat(2, 1fr)" 
+              }}
+              gap={4}
+              position="relative"
+            >
+              <GridItem
+                area="image1"
+                position="relative"
+                left={{ base: "0px", md: "120px" }}
+                top={{ base: "0px", md: "50px" }}
+              >
+                <Image src="/nft.jpeg" alt="Pepe in Bali Exhibition" borderRadius="md" />
+              </GridItem>
+
+              <GridItem
+                area="image2"
+                position="relative"
+                left={{ base: "0px", md: "50px" }}
+              >
+                <Image src="/nft2.jpeg" alt="Pepe in Bali Exhibition" borderRadius="md" />
+              </GridItem>
+
+              <GridItem
+                area="image3"
+                position="relative"
+                left={{ base: "0px", md: "-50px" }}
+              >
+                <Image src="/nft3.jpeg" alt="Pepe in Bali Exhibition" borderRadius="md" />
+              </GridItem>
+            </Grid>
+
+
+
           </GridItem>
 
           <GridItem>
