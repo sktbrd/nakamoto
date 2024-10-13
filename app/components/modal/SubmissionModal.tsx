@@ -19,15 +19,15 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-
-
 interface SubmitFormModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
 const SubmitFormModal: React.FC<SubmitFormModalProps> = ({ isOpen, onClose }) => {
+    const [productSuggestions, setProductSuggestions] = useState<any[]>([]);
     const { colors } = useTheme();
+    
     const [formData, setFormData] = useState({
         stampId: '',
         stampUrl: '',
@@ -38,11 +38,8 @@ const SubmitFormModal: React.FC<SubmitFormModalProps> = ({ isOpen, onClose }) =>
     });
 
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
     const [isMaximized, setIsMaximized] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
-
-
 
     const handleMinimize = () => {
         setIsMinimized(true);
@@ -63,6 +60,10 @@ const SubmitFormModal: React.FC<SubmitFormModalProps> = ({ isOpen, onClose }) =>
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    
+        if (name === 'stampId') {
+            fetchProductSuggestions(value); 
+        }
     };
 
     const handleSubmit = async () => {
@@ -76,7 +77,7 @@ const SubmitFormModal: React.FC<SubmitFormModalProps> = ({ isOpen, onClose }) =>
                 .from('stamps')
                 .insert([{
                     stampId: formData.stampId,
-                    stampUrl: formData.stampUrl,
+                    stampUrl: formData.stampUrl, 
                     artist: formData.artist,
                     email: formData.email,
                     socialMediaHandle: formData.socialMediaHandle,
@@ -103,8 +104,28 @@ const SubmitFormModal: React.FC<SubmitFormModalProps> = ({ isOpen, onClose }) =>
         }
     };
 
+    const fetchProductSuggestions = async (query: string) => {
+        if (!query) {
+            setProductSuggestions([]);
+            return;
+        }
 
-
+        try {
+            const { data, error } = await supabase
+                .from('products')
+                .select('STAMP_Asset,  imageUrls') 
+                .ilike('STAMP_Asset', `%${query}%`); 
+    
+            if (error) {
+                console.error('Error fetching products:', error);
+                return;
+            }
+    
+            setProductSuggestions(data || []);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
 
     return (
         <Modal isOpen={isOpen} onClose={handleClose} isCentered size={isMaximized ? '100%' : isMinimized ? 'sm' : 'md'}>
@@ -152,6 +173,38 @@ const SubmitFormModal: React.FC<SubmitFormModalProps> = ({ isOpen, onClose }) =>
                                         required
                                     />
                                 </InputGroup>
+                                {productSuggestions.length > 0 && (
+                                    <VStack
+                                        border="1px solid"
+                                        borderColor={colors.border}
+                                        borderRadius="md"
+                                        bg={colors.background}
+                                        w="100%"
+                                        maxH="200px"
+                                        overflowY="auto"
+                                        spacing={1}
+                                    >
+                                        {productSuggestions.map((product) => (
+                                            <Text
+                                                key={product.STAMP_Asset}
+                                                w="100%"
+                                                p={2}
+                                                cursor="pointer"
+                                                _hover={{ bg: colors.primary, color: colors.background }}
+                                                onClick={() => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        stampId: product.STAMP_Asset,
+                                                        stampUrl: product.imageUrls, 
+                                                    });
+                                                    setProductSuggestions([]); 
+                                                }}
+                                            >
+                                                {product.STAMP_Asset} - {product.name}
+                                            </Text>
+                                        ))}
+                                    </VStack>
+                                )}
                             </FormControl>
                             <FormControl>
                                 <FormLabel color={colors.text}>Stamp URL</FormLabel>
