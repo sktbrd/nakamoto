@@ -36,6 +36,7 @@ interface StampDetail {
     imageUrls: string[];
     epoch_name: string;
     epoch_index: string;
+    Creator_Name: string; 
 }
 
 interface Epoch {
@@ -81,6 +82,7 @@ const StampIndex = () => {
             }
             const stampDetail: StampDetail = {
                 STAMP_Asset: stamp.STAMP_Asset,
+                Creator_Name: stamp.Creator_Name,
                 Top: stamp.Top,
                 Rarity_TItle: stamp.Rarity_TItle || 'N/A',
                 Rarity_Score: stamp.Rarity_Score || 0,
@@ -207,7 +209,7 @@ const StampIndex = () => {
                     )}
                 </Box>
 
-                <Box width={["100%", "80%"]} pl={[0, 25]} textAlign="center">
+                <Box width={["100%", "100%"]} pl={[0, 25]} textAlign="center">
                     <SimpleGrid columns={[1, 2, 3]} spacing={10}>
                         {stamps.map((stamp: StampDetail, stampIndex) => {
                             const isCardFlipped = flippedIndex === stampIndex;
@@ -254,9 +256,11 @@ const StampIndex = () => {
                                                     />
                                                 </Box>
                                             </Center>
-                                            <Text color={"white"} textAlign="center">Index: {stamp.epoch_index}</Text>
-                                            <Text color={"white"} textAlign="center">Rarity Title: {stamp.Rarity_TItle}</Text>
-                                            <Text color={"white"} textAlign="center">Rarity Score: {stamp.Rarity_Score}</Text>
+                                           <Box>
+                                           <Text color={"white"} textAlign="center">Creator : {stamp.Creator_Name}</Text>
+                                            <Text color={"white"} textAlign="center">Rarity : {stamp.Rarity_TItle}</Text>
+                                            <Text color={"white"} textAlign="center">Score: {stamp.Rarity_Score}</Text>
+                                           </Box>
                                         </CardBody>
                                     </Card>
 
