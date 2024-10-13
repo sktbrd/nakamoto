@@ -31,12 +31,12 @@ import { StampIndexData } from "../utils/StampIndexData";
 interface StampDetail {
     STAMP_Asset: string;
     Top: number;
-    Rarity_TItle: string;
+    Title: string;
     Rarity_Score: number;
     imageUrls: string[];
     epoch_name: string;
     epoch_index: string;
-    Creator_Name: string; 
+    Creator_Name: string;
 }
 
 interface Epoch {
@@ -84,7 +84,7 @@ const StampIndex = () => {
                 STAMP_Asset: stamp.STAMP_Asset,
                 Creator_Name: stamp.Creator_Name,
                 Top: stamp.Top,
-                Rarity_TItle: stamp.Rarity_TItle || 'N/A',
+                Title: stamp.Title,
                 Rarity_Score: stamp.Rarity_Score || 0,
                 imageUrls: stamp.imageUrls,
                 epoch_name: stamp.epoch_name,
@@ -246,21 +246,33 @@ const StampIndex = () => {
                                         </Text>
                                         <CardBody bg={"transparent"}>
                                             <Center>
-                                                <Box overflow="hidden" mb={2}>
+                                                <Box mb={2} maxW="200px" maxH="200px" overflow="hidden">
                                                     <Image
                                                         src={stamp.imageUrls[0] || "https://via.placeholder.com/150"}
                                                         alt={stamp.STAMP_Asset}
-                                                        width={350}
-                                                        height={450}
-
+                                                        width={200}
+                                                        height={200}
+                                                        layout="intrinsic"
+                                                        objectFit="cover"
                                                     />
                                                 </Box>
                                             </Center>
-                                           <Box>
-                                           <Text color={"white"} textAlign="center">Creator : {stamp.Creator_Name}</Text>
-                                            <Text color={"white"} textAlign="center">Rarity : {stamp.Rarity_TItle}</Text>
-                                            <Text color={"white"} textAlign="center">Score: {stamp.Rarity_Score}</Text>
-                                           </Box>
+
+                                            <Box p={8}>
+                                                <Text color={"white"} fontSize="large">
+                                                    <strong>Creator:</strong> {stamp.Creator_Name}
+                                                </Text>
+                                                <Text color={"white"} textAlign="center" fontSize="large">
+                                                    <strong>Rarity:</strong> {stamp.Title}
+                                                </Text>
+                                                <Text color={"white"} textAlign="center" fontSize="large">
+                                                    <strong>Score:</strong>{stamp.Rarity_Score}
+                                                </Text>
+                                            </Box>
+
+
+
+
                                         </CardBody>
                                     </Card>
 
