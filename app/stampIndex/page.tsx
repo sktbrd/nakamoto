@@ -207,32 +207,25 @@ const StampIndex = () => {
                     )}
                 </Box>
 
-                <Box width={["100%", "80%"]} pl={[0, 10]} textAlign="center">
-                    <Text fontSize={["xl", "2xl"]} fontWeight="bold" mb={4}>
-                        {selectedEpoch || 'Select an Epoch'}
-                    </Text>
-
-                    <Text fontSize={["xl", "2xl"]} fontWeight="bold" mb={4}>
-                        {selectedIndex || 'Select an Index'}
-                    </Text>
-
-                    <SimpleGrid columns={[1, 2, 3]} spacing={12}> 
+                <Box width={["100%", "80%"]} pl={[0, 25]} textAlign="center">
+                    <SimpleGrid columns={[1, 2, 3]} spacing={10}>
                         {stamps.map((stamp: StampDetail, stampIndex) => {
-                            const isCardFlipped = flippedIndex === stampIndex; 
+                            const isCardFlipped = flippedIndex === stampIndex;
 
                             return (
                                 <Box
                                     key={stamp.STAMP_Asset}
-                                    width="300px" 
+                                    width="300px"
                                     height="550px"
                                     onClick={() => handleCardClick(stampIndex)}
                                     position="relative"
-                                    marginBottom={6} 
+                                    marginBottom={6}
+
                                 >
                                     {/* Card Frente */}
                                     <Card
                                         sx={{
-                                            transition: "transform 0.6s",
+                                            transition: "transform 1.1s",
                                             transform: isCardFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
                                             position: "absolute",
                                             width: "100%",
@@ -240,47 +233,37 @@ const StampIndex = () => {
                                             backfaceVisibility: "hidden",
                                         }}
                                         bg={"black"}
-                                        border={"2px solid white"}
+                                        border={"2px solid limegreen"}
                                         size="sm"
                                         color={"white"}
-                                        borderRadius="20px"
                                         boxShadow="md"
                                     >
-                                        <CardHeader
-                                            borderBottom={"1px solid white"}
-                                            borderTopRadius="10px"
-                                            textAlign="center"
-                                            bg="orange.400"
-                                            p={2}
-                                        >
-                                            <Text fontWeight={"bold"} fontSize={"20px"} color="black">
-                                                Stamp {stamp.STAMP_Asset}
-                                            </Text>
-                                        </CardHeader>
+
+                                        <Text fontWeight={"bold"} fontSize={"20px"} color="white">
+                                            Stamp {stamp.STAMP_Asset}
+                                        </Text>
                                         <CardBody bg={"transparent"}>
                                             <Center>
                                                 <Box overflow="hidden" mb={2}>
                                                     <Image
                                                         src={stamp.imageUrls[0] || "https://via.placeholder.com/150"}
                                                         alt={stamp.STAMP_Asset}
-                                                        width={250}
-                                                        height={350}
-                                                        objectFit="cover"
+                                                        width={350}
+                                                        height={450}
+
                                                     />
                                                 </Box>
                                             </Center>
-                                            <Text textAlign="center">Top: {stamp.Top}</Text>
-                                            <Text textAlign="center">Rarity Score: {stamp.Rarity_Score}</Text>
-                                            <Text textAlign="center">Rarity Title: {stamp.Rarity_TItle}</Text>
-                                            <Text textAlign="center">Epoch: {stamp.epoch_name}</Text>
-                                            <Text textAlign="center">Index: {stamp.epoch_index}</Text>
+                                            <Text color={"white"} textAlign="center">Index: {stamp.epoch_index}</Text>
+                                            <Text color={"white"} textAlign="center">Rarity Title: {stamp.Rarity_TItle}</Text>
+                                            <Text color={"white"} textAlign="center">Rarity Score: {stamp.Rarity_Score}</Text>
                                         </CardBody>
                                     </Card>
 
                                     {/* Card Verso */}
                                     <Card
                                         sx={{
-                                            transition: "transform 0.6s",
+                                            transition: "transform 1.1s",
                                             transform: isCardFlipped ? "rotateY(0deg)" : "rotateY(180deg)",
                                             position: "absolute",
                                             width: "100%",
@@ -288,10 +271,9 @@ const StampIndex = () => {
                                             backfaceVisibility: "hidden",
                                         }}
                                         bg={"black"}
-                                        border={"2px solid white"}
+                                        border={"2px solid limegreen"}
                                         size="sm"
                                         color={"white"}
-                                        borderRadius="20px"
                                         boxShadow="md"
                                     >
                                         <CardHeader
@@ -314,7 +296,7 @@ const StampIndex = () => {
                                                 colorScheme="yellow"
                                                 size="sm"
                                                 variant={"outline"}
-                                                onClick={() => handleCardClick(stampIndex)} 
+                                                onClick={() => handleCardClick(stampIndex)}
                                             >
                                                 Back
                                             </Button>
