@@ -113,7 +113,7 @@ const SubmitFormModal: React.FC<SubmitFormModalProps> = ({ isOpen, onClose }) =>
         try {
             const { data, error } = await supabase
                 .from('products')
-                .select('STAMP_Asset,  imageUrls') 
+                .select('STAMP_Asset,  Creator_Name') 
                 .ilike('STAMP_Asset', `%${query}%`); 
     
             if (error) {
