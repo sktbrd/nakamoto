@@ -1,46 +1,55 @@
-'use client'
-import React, { useEffect, useState } from 'react';
-import { Box, Flex, Text, Input, Button, useColorMode, Image, HStack } from '@chakra-ui/react';
+'use client';
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { Box, Button, Flex, HStack, IconButton, Image, Link, Text, useColorMode, VStack } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { useEffect, useState } from 'react';
 import SubmissionModal from '../modal/SubmissionModal';
-import NextLink from 'next/link'
-import { Link } from '@chakra-ui/react'
 
 export default function Header() {
     const { colorMode } = useColorMode();
     const [modalDisplayed, setModalDisplayed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 768) {
-                setIsMobile(true);
-            } else {
-                setIsMobile(false);
-            }
+            setIsMobile(window.innerWidth < 768);
         };
 
-        handleResize(); // Check initial window size
-
-        window.addEventListener('resize', handleResize); // Add event listener for window resize
+        handleResize();
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize); // Clean up event listener on component unmount
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
+    const handleMenuToggle = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
-        <Box bg="background" px={{ base: 4, md: 6 }} py={4} borderBottom={"1px solid"} borderColor={"primary"}>
-            <Flex justify="space-between" align="center">
+        <Box bg="background" px={4} py={4} borderBottom="1px solid" borderColor="primary">
+            <Flex justify="space-between" align="center" wrap="wrap">
                 <HStack as={NextLink} href='/' spacing={2} cursor="pointer">
-                    <Image src="/burnHead.svg" alt="Nakamoto" boxSize="100px" />
-                    <Text fontSize={{ base: 'xl', md: '2xl' }} mt={2} fontWeight="bold">
+                    <Image src="/burnHead.svg" alt="Nakamoto" boxSize="60px" />
+                    <Text fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold">
                         Nakamoto
                     </Text>
                 </HStack>
-                {!isMobile && (
-                    <>
+
+                {isMobile ? (
+                    <IconButton
+                        icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+                        aria-label="Toggle Navigation"
+                        variant="outline"
+                        onClick={handleMenuToggle}
+                        color="primary"
+                    />
+                ) : (
+                    <HStack spacing={6}>
                         <Link as={NextLink} href='/about' fontSize="lg" fontWeight="bold" color="primary">
-                            About us
+                            About Us
                         </Link>
                         <Link as={NextLink} href='/stampIndex' fontSize="lg" fontWeight="bold" color="primary">
                             Stamps Index
@@ -48,12 +57,45 @@ export default function Header() {
                         <Link as={NextLink} href='/rules' fontSize="lg" fontWeight="bold" color="primary">
                             Rules
                         </Link>
-                    </>
+                    </HStack>
                 )}
-                <Button onClick={() => setModalDisplayed(true)}>
-                    {'Submit'}
+
+                <Button
+                    onClick={() => setModalDisplayed(true)}
+                    variant="solid"
+                    colorScheme="teal"
+                    size="md"
+                    ml={{ base: 0, md: 4 }}
+                    _hover={{ bg: 'teal.600' }}
+                >
+                    Submit
                 </Button>
             </Flex>
+
+            {isMenuOpen && isMobile && (
+                <VStack
+                    spacing={4}
+                    mt={4}
+                    align="flex-start"
+                    bg="gray.800"
+                    borderRadius="md"
+                    py={4}
+                    px={6}
+                    shadow="md"
+                    display={isMobile ? 'flex' : 'none'}
+                >
+                    <Link as={NextLink} href='/about' fontSize="lg" fontWeight="bold" color="primary" onClick={handleMenuToggle}>
+                        About Us
+                    </Link>
+                    <Link as={NextLink} href='/stampIndex' fontSize="lg" fontWeight="bold" color="primary" onClick={handleMenuToggle}>
+                        Stamps Index
+                    </Link>
+                    <Link as={NextLink} href='/rules' fontSize="lg" fontWeight="bold" color="primary" onClick={handleMenuToggle}>
+                        Rules
+                    </Link>
+                </VStack>
+            )}
+
             <SubmissionModal isOpen={modalDisplayed} onClose={() => setModalDisplayed(false)} />
         </Box>
     );

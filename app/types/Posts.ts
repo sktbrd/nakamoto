@@ -1,15 +1,14 @@
-// types/Post.ts
 export interface Post {
     abs_rshares: number;
     active: string;
-    active_votes: any[]; // Define a more specific type if you have one
+    active_votes: any[]; 
     allow_curation_rewards: boolean;
     allow_replies: boolean;
     allow_votes: boolean;
     author: string;
     author_reputation: string;
     author_rewards: number;
-    beneficiaries: any[]; // Define a more specific type if you have one
+    beneficiaries: any[]; 
     body: string;
     body_length: number;
     cashout_time: string;
@@ -41,8 +40,8 @@ export interface Post {
     percent_hbd: number;
     permlink: string;
     promoted: string;
-    reblogged_by: any[]; // Define a more specific type if you have one
-    replies: any[]; // Define a more specific type if you have one
+    reblogged_by: any[];
+    replies: any[]; 
     reward_weight: number;
     root_author: string;
     root_permlink: string;

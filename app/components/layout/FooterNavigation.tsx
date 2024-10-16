@@ -1,4 +1,5 @@
-import { Box, HStack, Button, Link } from '@chakra-ui/react';
+import { Box, Button, HStack, Link } from '@chakra-ui/react';
+import NextLink from 'next/link';
 
 export default function FooterNavigation() {
     return (
@@ -16,7 +17,9 @@ export default function FooterNavigation() {
         >
             <HStack justify="space-around">
                 <Button variant="ghost">
-                    Home
+                   <Link as={NextLink} href='/' fontSize="lg" fontWeight="bold" color="primary">
+                   Home
+                   </Link>
                 </Button>
                 <Button variant="ghost">
                     Explore
